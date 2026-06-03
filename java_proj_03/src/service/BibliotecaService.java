@@ -1,15 +1,19 @@
 package service;
 
-import model.MaterialBibliografico;
-import model.Prestamo;
-import model.Alumno;
+import model.*;
 
 import java.util.ArrayList;
 
 public class BibliotecaService {
-    private ArrayList<MaterialBibliografico> materiales = new ArrayList<>();
-    private ArrayList<Prestamo> prestamos = new ArrayList<>();
-    private ArrayList<Alumno> alumnos = new ArrayList<>();
+    private ArrayList<MaterialBibliografico> materiales;
+    private ArrayList<Prestamo> prestamos;
+    private ArrayList<Alumno> alumnos;
+
+    public BibliotecaService() {
+        this.materiales = new ArrayList<>();
+        this.prestamos = new ArrayList<>();
+        this.alumnos = new ArrayList<>();
+    }
 
     public void registrarAlumno(Alumno alumno) {
 
@@ -19,6 +23,7 @@ public class BibliotecaService {
     
     public void realizarPrestamo(Prestamo prestamo) {
 
+        prestamo.registrarPrestamo();
         prestamos.add(prestamo);
 
     }
@@ -29,18 +34,20 @@ public class BibliotecaService {
         
     }
 
-    public void mostrarInventario() {
+    public void mostrarMateriales() {
 
-        System.out.println("\n===== INVENTARIO DE MATERIALES BIBLIOGRÁFICOS =====");
+        for (MaterialBibliografico material : materiales) {
+           //En esta sección se comprueba el Polimorfismo
+           // instanceof compara que tipo de instancia es el objeto
+           if (material instanceof Libro) 
+                System.out.println((Libro)material); // Casting de un objeto
+           else if(material instanceof Revista)
+                System.out.println((Revista)material);
+           else
+                System.out.println((Tesis)material);
 
-        for (MaterialBibliografico m : materiales) {
-
-            m.mostrarInfo();
-
-            System.out.println("----------------------");
-
+            System.out.println("------------------");
         }
-
     }
 
     public void mostrarPrestamos() {
@@ -49,7 +56,7 @@ public class BibliotecaService {
 
         for (Prestamo p : prestamos) {
 
-            p.mostrarInfo();
+            p.toString();
 
             System.out.println("----------------------");
 
@@ -63,7 +70,7 @@ public class BibliotecaService {
 
         for (Alumno a : alumnos) {
 
-            a.MostrarDatos();
+            a.toString();
 
             System.out.println("----------------------");
 
@@ -76,21 +83,16 @@ public class BibliotecaService {
         prestamo.registrarDevolucion();
 
     }
-
-    public MaterialBibliografico buscarMaterial(String codigo) {
-
-        for (MaterialBibliografico m : materiales) {
-
-            if (m.codigo.equals(codigo)) {
-
-                return m;
-
-            }
-
-        }
-
-        return null;
-
+    
+    public ArrayList<MaterialBibliografico> getMateriales() {
+        return materiales;
     }
     
+    public ArrayList<Prestamo> getPrestamos() {
+        return prestamos;
+    }
+    
+    public ArrayList<Alumno> getAlumnos() {
+        return alumnos;
+    }
 }

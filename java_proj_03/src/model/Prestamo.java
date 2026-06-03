@@ -14,7 +14,7 @@ public class Prestamo {
     }
 
     public void registrarPrestamo() {
-        if (material.isSePuedePrestar() && material.isDisponible()) {
+        if (material.sePuedePrestar()) {
             material.setDisponible(false);
             System.out.println("Préstamo registrado exitosamente.");
         } else {
@@ -27,9 +27,9 @@ public class Prestamo {
         System.out.println("Devolución registrada exitosamente.");
     }
 
-    public String mostrarInfo() {
+    public String toString() {
         return "Prestamo [fechaPrestamo=" + fechaPrestamo + ", fechaDevolucion=" + fechaDevolucion + ", alumno="
-                + alumno.MostrarDatos() + ", material=" + material.mostrarInfo() + "]";
+                + alumno.toString() + ", material=" + material.toString() + "]";
     }
 
 }
