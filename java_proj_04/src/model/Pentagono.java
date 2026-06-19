@@ -2,8 +2,8 @@ package model;
 
 public class Pentagono extends FiguraGeometrica {
 
-    public Pentagono(double lado){
-        super("Pentágono", lado, 0);
+    public Pentagono(double lado, double apotema) {
+        super("Pentágono", lado, apotema);
 
         calcularArea();
         calcularPerimetro();

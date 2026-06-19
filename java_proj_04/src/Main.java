@@ -2,6 +2,7 @@ import model.Circulo;
 import model.Cuadrado;
 import model.Rectangulo;
 import model.Triangulo;
+import model.Pentagono;
 
 import service.FiguraService;
 import util.Consola;
@@ -55,17 +56,22 @@ public class Main {
 
                 case 5:
 
-                    service.mostrarFiguras();
+                    registrarPentagono(service);
                     break;
 
                 case 6:
 
-                    service.mostrarResumen();
+                    service.mostrarFiguras();
                     break;
 
                 case 7:
 
-                    System.out.println("\n👋 Programa finalizado.");
+                    service.mostrarResumen();
+                    break;
+
+                case 8:
+
+                    System.out.println("\n👋 ¡Hasta luego!");
                     break;
 
                 default:
@@ -88,9 +94,10 @@ public class Main {
         System.out.println("2. Registrar cuadrado");
         System.out.println("3. Registrar rectángulo");
         System.out.println("4. Registrar triángulo");
-        System.out.println("5. Mostrar figuras");
-        System.out.println("6. Mostrar resumen");
-        System.out.println("7. Salir");
+        System.out.println("5. Registrar pentágono");
+        System.out.println("6. Mostrar figuras");
+        System.out.println("7. Mostrar resumen");
+        System.out.println("8. Salir");
     }
 
     /**
@@ -139,5 +146,13 @@ public class Main {
         double lado3 = Consola.leerDouble("Ingrese el lado 3: ");
 
         service.agregarFigura( new Triangulo(base, altura, lado2, lado3));
+    }
+    private static void registrarPentagono(FiguraService service) {
+
+        double lado = Consola.leerDouble("Ingrese el lado: ");
+
+        double apotema = Consola.leerDouble("Ingrese el apotema: ");
+
+        service.agregarFigura(new Pentagono(lado, apotema));
     }
 }
